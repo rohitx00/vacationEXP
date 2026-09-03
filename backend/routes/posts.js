@@ -4,13 +4,15 @@ import {
   getPostById, 
   createPost, 
   toggleLike, 
-  addComment 
+  addComment,
+  getUserPosts
 } from '../controllers/postController.js';
 import { protect } from '../middleware/authMiddleware.js';
 
 const router = express.Router();
 
 router.get('/', getPosts);
+router.get('/user/me', protect, getUserPosts);
 router.get('/:id', getPostById);
 router.post('/', protect, createPost);
 router.post('/:id/like', protect, toggleLike);

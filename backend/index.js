@@ -12,6 +12,10 @@ import authRoutes from './routes/auth.js';
 import tripRoutes from './routes/trips.js';
 import postRoutes from './routes/posts.js';
 
+import User from './models/User.js';
+import Trip from './models/Trip.js';
+import Post from './models/Post.js';
+
 // ... other middleware ...
 app.use(cors());
 app.use(express.json());
@@ -30,6 +34,18 @@ app.use('/api/posts', postRoutes);
 // Basic route
 app.get('/', (req, res) => {
   res.send('VacationExp API is running...');
+});
+
+// Stats route
+app.get('/api/stats', async (req, res) => {
+  try {
+    const totalUsers = await User.countDocuments();
+    const totalTrips = await Trip.countDocuments();
+    const totalPosts = await Post.countDocuments();
+    res.json({ totalUsers, totalTrips, totalPosts });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
 });
 
 // Start server
