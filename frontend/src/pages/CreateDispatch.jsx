@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
+import { toast } from '@/components/ui/toast';
 
 export default function CreateDispatch() {
   const [title, setTitle] = useState('');
@@ -34,6 +35,10 @@ export default function CreateDispatch() {
       });
 
       if (res.ok) {
+        toast({
+          title: "Dispatch Published",
+          description: "Your travel story is now live in the community feed.",
+        });
         navigate('/community');
       } else {
         const data = await res.json();

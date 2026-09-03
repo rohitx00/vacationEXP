@@ -1,18 +1,22 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
+import { toast } from '@/components/ui/toast';
 
 export default function GeneratedItinerary() {
+  const { id } = useParams();
+  const navigate = useNavigate();
   const [itinerary, setItinerary] = useState(null);
+  const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState('');
-  const navigate = useNavigate();
 
   useEffect(() => {
     const data = localStorage.getItem('currentGeneratedTrip');
     if (data) {
       try {
         setItinerary(JSON.parse(data));
+        setLoading(false);
       } catch (e) {
         navigate('/plan');
       }
@@ -46,13 +50,26 @@ export default function GeneratedItinerary() {
       });
 
       if (res.ok) {
-        alert('Trip saved successfully!');
-        navigate('/'); // redirect to dashboard later
+        toast({
+          title: "Expedition Saved",
+          description: "You can view this itinerary anytime in your dashboard.",
+        });
+        navigate('/dashboard');
       } else {
         const data = await res.json();
+        toast({
+          variant: "destructive",
+          title: "Save Failed",
+          description: data.message || "Failed to save.",
+        });
         setError(data.message || 'Failed to save');
       }
     } catch (err) {
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: "Network error occurred.",
+      });
       setError('Network error');
     } finally {
       setSaving(false);

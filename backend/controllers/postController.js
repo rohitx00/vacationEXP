@@ -91,3 +91,13 @@ export const addComment = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
+// Get posts by the logged in user
+export const getUserPosts = async (req, res) => {
+  try {
+    const posts = await Post.find({ user: req.user._id }).sort({ createdAt: -1 });
+    res.json(posts);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
