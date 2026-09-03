@@ -9,6 +9,7 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 import authRoutes from './routes/auth.js';
+import tripRoutes from './routes/trips.js';
 
 // ... other middleware ...
 app.use(cors());
@@ -22,6 +23,7 @@ mongoose
 
 // Routes
 app.use('/api/auth', authRoutes);
+app.use('/api/trips', tripRoutes);
 
 // Basic route
 app.get('/', (req, res) => {
