@@ -10,6 +10,7 @@ const PORT = process.env.PORT || 5000;
 
 import authRoutes from './routes/auth.js';
 import tripRoutes from './routes/trips.js';
+import postRoutes from './routes/posts.js';
 
 // ... other middleware ...
 app.use(cors());
@@ -24,6 +25,7 @@ mongoose
 // Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/trips', tripRoutes);
+app.use('/api/posts', postRoutes);
 
 // Basic route
 app.get('/', (req, res) => {
