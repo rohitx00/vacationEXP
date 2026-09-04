@@ -1,29 +1,15 @@
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 export default function Home() {
   const navigate = useNavigate();
-  const userInfo = JSON.parse(localStorage.getItem('userInfo'));
-  
-  const handleLogout = (e) => {
-    e.preventDefault();
-    localStorage.removeItem('userInfo');
-    navigate('/login');
-  };
-
   const [stats, setStats] = useState({ totalUsers: 0, totalTrips: 0, totalPosts: 0 });
   const [budget, setBudget] = useState(45000);
   const [destination, setDestination] = useState("Old Manali, Himachal Pradesh");
   
   const today = new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
-  const [utcTime, setUtcTime] = useState(new Date().toLocaleTimeString('en-GB', { timeZone: 'UTC' }));
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setUtcTime(new Date().toLocaleTimeString('en-GB', { timeZone: 'UTC' }));
-    }, 1000);
-    return () => clearInterval(timer);
-  }, []);
   useEffect(() => {
     fetch("http://localhost:5000/api/stats")
       .then(res => res.json())
@@ -33,78 +19,7 @@ export default function Home() {
 
   return (
     <div className="bg-surface font-body-md text-body-md text-on-surface antialiased overflow-x-hidden">
-      <header className="fixed top-0 left-0 right-0 w-full z-50 bg-surface/85 backdrop-blur-md border-b border-surface-dim/40">
-        <div className="h-20 w-full px-container-margin-sm md:px-container-margin-md lg:px-container-margin-lg flex items-center justify-between gap-gutter-default">
-          <div className="flex items-center gap-unit-md">
-            <img
-              alt="VacationExp Brand Emblem"
-              className="h-8 w-auto object-contain"
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuCzoZuLC09FEiYN2wUEcLc_bjxEhi2jyOBhbiuSUK9uUvFDS6BYFp89Ry5xKGf6GO8MwK7b_ib3u_dlFgcn16cRW8zhFeBRfYy94Sg4knqYG-FXAMYXTuHOmat9sXr-GwOEKkd3iVaDzQa0_rusvoc8Gw-BIl7z1z_1H6JV_MNbRH4sYz4Z4x7-2ZPSySclyqErDPj4D0ykvIMuDkq9fQAMGfggAMBdxE3AAIixP4JaD-oiJn3N6que"
-            />
-            <a className="flex flex-col" data-path="home" href="#">
-              <span className="font-headline-sm text-headline-sm tracking-tight text-primary">
-                VacationExp
-              </span>
-              <span className="font-meta-mono text-meta-mono text-outline uppercase tracking-wider -mt-1 hidden sm:block"></span>
-            </a>
-          </div>
-          <nav
-            className="hidden lg:flex items-center gap-unit-lg font-label-md text-label-md"
-            data-active-classes="text-primary font-bold"
-          >
-            <a
-              className="text-on-surface-variant hover:text-primary transition-colors cursor-pointer"
-              onClick={(e) => {
-                e.preventDefault();
-                navigate("/dashboard");
-              }}
-            >
-              Dashboard
-            </a>
-            <a
-              className="text-on-surface-variant hover:text-primary transition-colors cursor-pointer"
-              onClick={(e) => {
-                e.preventDefault();
-                navigate("/community");
-              }}
-            >
-              Community
-            </a>
-          </nav>
-          <div className="flex items-center gap-unit-sm md:gap-unit-md">
-            <a
-              className="inline-flex items-center bg-primary text-on-primary px-unit-md py-unit-xs rounded-xl font-label-md text-label-md hover:bg-primary-container transition-all group cursor-pointer"
-              onClick={(e) => {
-                e.preventDefault();
-                navigate("/plan");
-              }}
-            >
-              <span className="mr-unit-xs">Start Journey →</span>
-              <span className="bg-secondary text-on-secondary font-label-caps text-label-caps px-1.5 py-0.5 rounded-full">
-                AI
-              </span>
-            </a>
-            {!userInfo ? (
-              <a
-                className="hidden sm:inline-flex items-center justify-center font-label-md text-label-md text-on-secondary bg-secondary hover:opacity-90 transition-opacity px-unit-md py-unit-xs rounded-xl cursor-pointer"
-                onClick={(e) => {
-                  e.preventDefault();
-                  navigate("/login");
-                }}
-              >
-                Sign In
-              </a>
-            ) : (
-              <a
-                className="hidden sm:inline-flex items-center justify-center font-label-md text-label-md text-on-secondary bg-secondary hover:opacity-90 transition-opacity px-unit-md py-unit-xs rounded-xl cursor-pointer"
-                onClick={handleLogout}
-              >
-                Log Out
-              </a>
-            )}
-          </div>
-        </div>
-      </header>
+      <Navbar />
       <main className="w-full pt-20 bg-surface min-h-[calc(100vh-80px)]">
         <div className="flex flex-col w-full">
           <section className="relative w-full -mt-20 overflow-hidden bg-primary">
@@ -1260,191 +1175,7 @@ export default function Home() {
           </section>
         </div>
       </main>
-      <footer className="w-full bg-surface-container-low border-t border-surface-dim/40 pt-unit-3xl pb-unit-2xl">
-        <div className="w-full px-container-margin-sm md:px-container-margin-md lg:px-container-margin-lg">
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-unit-xl pb-unit-2xl border-b border-outline-variant/30">
-            <div className="md:col-span-5 flex flex-col justify-between space-y-unit-md">
-              <div className="space-y-unit-xs">
-                <h2 className="font-headline-lg text-headline-lg text-primary tracking-tight">
-                  VacationExp
-                </h2>
-                <p className="font-caption-editorial text-caption-editorial italic text-on-surface-variant max-w-md">
-                  Plan with AI. Travel with real experiences.
-                </p>
-              </div>
-              <div className="space-y-unit-2xs pt-unit-md">
-                <div className="font-meta-mono text-meta-mono text-outline uppercase tracking-wider">
-                  Editorial Headquarters &amp; Dehradun, Uttarakhand, India
-                </div>
-                <div className="font-meta-mono text-meta-mono text-on-surface">
-                  31.1048° N, 77.1734° E — Dehradun 
-                </div>
-              </div>
-            </div>
-            <div className="md:col-span-7 grid grid-cols-2 sm:grid-cols-3 gap-unit-lg">
-              <div className="space-y-unit-sm">
-                <h3 className="font-label-caps text-label-caps text-primary uppercase tracking-wider">
-                  Destinations
-                </h3>
-                <ul className="space-y-unit-xs font-body-sm text-body-sm text-on-surface-variant">
-                  <li>
-                    <a
-                      className="hover:text-primary transition-colors"
-                      data-path="manali"
-                      href="#"
-                    >
-                      Manali
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      className="hover:text-primary transition-colors"
-                      data-path="ladakh"
-                      href="#"
-                    >
-                      Ladakh
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      className="hover:text-primary transition-colors"
-                      data-path="goa"
-                      href="#"
-                    >
-                      Goa
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      className="hover:text-primary transition-colors"
-                      data-path="kerala"
-                      href="#"
-                    >
-                      Kerala
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      className="hover:text-primary transition-colors"
-                      data-path="jaipur"
-                      href="#"
-                    >
-                      Jaipur
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              <div className="space-y-unit-sm">
-                <h3 className="font-label-caps text-label-caps text-primary uppercase tracking-wider">
-                  Intelligence
-                </h3>
-                <ul className="space-y-unit-xs font-body-sm text-body-sm text-on-surface-variant">
-                  <li>
-                    <a
-                      className="hover:text-primary transition-colors"
-                      data-path="plan-a-trip"
-                      href="#"
-                    >
-                      AI Planner
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      className="hover:text-primary transition-colors"
-                      data-path="explore"
-                      href="#"
-                    >
-                      Curated Itineraries
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      className="hover:text-primary transition-colors"
-                      data-path="stories"
-                      href="#"
-                    >
-                      Traveler Stories
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      className="hover:text-primary transition-colors"
-                      data-path="budget-architect"
-                      href="#"
-                    >
-                      Budget Architect
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              <div className="space-y-unit-sm col-span-2 sm:col-span-1">
-                <h3 className="font-label-caps text-label-caps text-primary uppercase tracking-wider">
-                  Publication
-                </h3>
-                <ul className="space-y-unit-xs font-body-sm text-body-sm text-on-surface-variant">
-                  <li>
-                    <a
-                      className="hover:text-primary transition-colors"
-                      data-path="about"
-                      href="#"
-                    >
-                      About
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      className="hover:text-primary transition-colors"
-                      data-path="stories"
-                      href="#"
-                    >
-                      Journal
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      className="hover:text-primary transition-colors"
-                      data-path="careers"
-                      href="#"
-                    >
-                      Careers
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      className="hover:text-primary transition-colors"
-                      data-path="press"
-                      href="#"
-                    >
-                      Press Dispatches
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div className="pt-unit-lg flex flex-col md:flex-row items-center justify-between gap-unit-md">
-            <div className="flex items-center gap-unit-lg font-meta-mono text-meta-mono text-outline">
-              <span className="flex items-center gap-1.5">
-                <span className="w-2 h-2 rounded-full bg-surface-tint animate-pulse"></span>
-                LIVE UTC CHRONOMETER: {utcTime} UTC
-              </span>
-              <span>CARTOGRAPHIC VER. 3.4.1</span>
-            </div>
-            <div className="flex items-center gap-unit-md font-label-caps text-label-caps text-on-surface-variant">
-             
-              <a className="hover:text-primary transition-colors" href="#">
-                Instagram
-              </a>
-              <a className="hover:text-primary transition-colors" href="#">
-                X Journal
-              </a>
-            </div>
-            <div className="font-meta-mono text-meta-mono text-outline">
-              © 2026 VacationExp Inc. All rights reserved.
-            </div>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }
