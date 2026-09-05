@@ -1,14 +1,16 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import React from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Navbar() {
   const navigate = useNavigate();
-  const userInfo = localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')) : null;
+  const userInfo = localStorage.getItem("userInfo")
+    ? JSON.parse(localStorage.getItem("userInfo"))
+    : null;
 
   const handleLogout = (e) => {
     e.preventDefault();
-    localStorage.removeItem('userInfo');
-    navigate('/login');
+    localStorage.removeItem("userInfo");
+    navigate("/login");
   };
 
   return (
@@ -20,16 +22,20 @@ export default function Navbar() {
             className="h-10 w-auto object-contain"
             src="/logo.png"
           />
-          <a className="flex flex-col cursor-pointer" onClick={(e) => { e.preventDefault(); navigate("/"); }}>
+          <a
+            className="flex flex-col cursor-pointer"
+            onClick={(e) => {
+              e.preventDefault();
+              navigate("/");
+            }}
+          >
             <span className="font-headline-sm text-headline-sm tracking-tight text-primary">
               VacationExp
             </span>
             <span className="font-meta-mono text-meta-mono text-outline uppercase tracking-wider -mt-1 hidden sm:block"></span>
           </a>
         </div>
-        <nav
-          className="hidden lg:flex items-center gap-unit-lg font-label-md text-label-md"
-        >
+        <nav className="hidden lg:flex items-center gap-unit-lg font-label-md text-label-md">
           <a
             className="text-on-surface-variant hover:text-primary transition-colors cursor-pointer"
             onClick={(e) => {
