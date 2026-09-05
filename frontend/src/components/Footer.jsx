@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
 export default function Footer() {
-  const [utcTime, setUtcTime] = useState('00:00:00');
+  const [utcTime, setUtcTime] = useState("00:00:00");
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -29,7 +29,7 @@ export default function Footer() {
                 Editorial Headquarters &amp; Dehradun, Uttarakhand, India
               </div>
               <div className="font-meta-mono text-meta-mono text-on-surface">
-                31.1048° N, 77.1734° E &mdash; Dehradun 
+                31.1048° N, 77.1734° E &mdash; Dehradun
               </div>
             </div>
           </div>
@@ -39,11 +39,31 @@ export default function Footer() {
                 Destinations
               </h3>
               <ul className="space-y-unit-xs font-body-sm text-body-sm text-on-surface-variant">
-                <li><a className="hover:text-primary transition-colors" href="#">Manali</a></li>
-                <li><a className="hover:text-primary transition-colors" href="#">Ladakh</a></li>
-                <li><a className="hover:text-primary transition-colors" href="#">Goa</a></li>
-                <li><a className="hover:text-primary transition-colors" href="#">Kerala</a></li>
-                <li><a className="hover:text-primary transition-colors" href="#">Jaipur</a></li>
+                <li>
+                  <a className="hover:text-primary transition-colors" href="#">
+                    Manali
+                  </a>
+                </li>
+                <li>
+                  <a className="hover:text-primary transition-colors" href="#">
+                    Ladakh
+                  </a>
+                </li>
+                <li>
+                  <a className="hover:text-primary transition-colors" href="#">
+                    Goa
+                  </a>
+                </li>
+                <li>
+                  <a className="hover:text-primary transition-colors" href="#">
+                    Kerala
+                  </a>
+                </li>
+                <li>
+                  <a className="hover:text-primary transition-colors" href="#">
+                    Jaipur
+                  </a>
+                </li>
               </ul>
             </div>
             <div className="space-y-unit-sm">
@@ -51,10 +71,26 @@ export default function Footer() {
                 Intelligence
               </h3>
               <ul className="space-y-unit-xs font-body-sm text-body-sm text-on-surface-variant">
-                <li><a className="hover:text-primary transition-colors" href="#">AI Planner</a></li>
-                <li><a className="hover:text-primary transition-colors" href="#">Curated Itineraries</a></li>
-                <li><a className="hover:text-primary transition-colors" href="#">Traveler Stories</a></li>
-                <li><a className="hover:text-primary transition-colors" href="#">Budget Architect</a></li>
+                <li>
+                  <a className="hover:text-primary transition-colors" href="#">
+                    AI Planner
+                  </a>
+                </li>
+                <li>
+                  <a className="hover:text-primary transition-colors" href="#">
+                    Curated Itineraries
+                  </a>
+                </li>
+                <li>
+                  <a className="hover:text-primary transition-colors" href="#">
+                    Traveler Stories
+                  </a>
+                </li>
+                <li>
+                  <a className="hover:text-primary transition-colors" href="#">
+                    Budget Architect
+                  </a>
+                </li>
               </ul>
             </div>
             <div className="space-y-unit-sm col-span-2 sm:col-span-1">
@@ -62,10 +98,26 @@ export default function Footer() {
                 Publication
               </h3>
               <ul className="space-y-unit-xs font-body-sm text-body-sm text-on-surface-variant">
-                <li><a className="hover:text-primary transition-colors" href="#">About</a></li>
-                <li><a className="hover:text-primary transition-colors" href="#">Journal</a></li>
-                <li><a className="hover:text-primary transition-colors" href="#">Careers</a></li>
-                <li><a className="hover:text-primary transition-colors" href="#">Press Dispatches</a></li>
+                <li>
+                  <a className="hover:text-primary transition-colors" href="#">
+                    About
+                  </a>
+                </li>
+                <li>
+                  <a className="hover:text-primary transition-colors" href="#">
+                    Journal
+                  </a>
+                </li>
+                <li>
+                  <a className="hover:text-primary transition-colors" href="#">
+                    Careers
+                  </a>
+                </li>
+                <li>
+                  <a className="hover:text-primary transition-colors" href="#">
+                    Press Dispatches
+                  </a>
+                </li>
               </ul>
             </div>
           </div>
@@ -77,7 +129,7 @@ export default function Footer() {
               LIVE UTC CHRONOMETER: {utcTime} UTC
             </span>
           </div>
-          
+
           <div className="font-meta-mono text-meta-mono text-outline">
             © 2026 VacationExp Inc. All rights reserved.
           </div>

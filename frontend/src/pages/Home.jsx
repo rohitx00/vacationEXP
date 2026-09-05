@@ -5,16 +5,26 @@ import Footer from "../components/Footer";
 
 export default function Home() {
   const navigate = useNavigate();
-  const [stats, setStats] = useState({ totalUsers: 0, totalTrips: 0, totalPosts: 0 });
+  const [stats, setStats] = useState({
+    totalUsers: 0,
+    totalTrips: 0,
+    totalPosts: 0,
+  });
   const [budget, setBudget] = useState(45000);
-  const [destination, setDestination] = useState("Old Manali, Himachal Pradesh");
-  
-  const today = new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+  const [destination, setDestination] = useState(
+    "Old Manali, Himachal Pradesh",
+  );
+
+  const today = new Date().toLocaleDateString("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+  });
   useEffect(() => {
-    fetch("http://localhost:5000/api/stats")
-      .then(res => res.json())
-      .then(data => setStats(data))
-      .catch(err => console.error("Error fetching stats:", err));
+    fetch(`${import.meta.env.VITE_API_URL}/api/stats`)
+      .then((res) => res.json())
+      .then((data) => setStats(data))
+      .catch((err) => console.error("Error fetching stats:", err));
   }, []);
 
   return (
@@ -34,9 +44,8 @@ export default function Home() {
               {/* Advanced Gradients for Text Legibility & Mood */}
               <div className="absolute inset-0 bg-primary/50 mix-blend-multiply"></div>
               <div className="absolute inset-0 bg-gradient-to-t from-primary via-primary/20 to-transparent"></div>
-              
+
               <div className="relative z-10 w-full px-container-margin-sm md:px-container-margin-md pt-20 pb-unit-3xl flex flex-col items-center">
-                
                 {/* Glowing Glassmorphic Badge */}
                 <div className="mb-8 inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 px-4 py-1.5 rounded-full shadow-2xl">
                   <span className="relative flex h-3 w-3">
@@ -56,10 +65,13 @@ export default function Home() {
                       Experience more.
                     </span>
                   </h1>
-                  
+
                   {/* Refined Subheadline */}
                   <p className="font-body-lead text-[18px] md:text-[22px] text-white/90 max-w-3xl mx-auto pt-4 drop-shadow-md font-medium">
-                    Tell us where you're going, when you're traveling, and your budget. Our localized intelligence engine compiles terrain conditions and community secrets into a bespoke blueprint in seconds.
+                    Tell us where you're going, when you're traveling, and your
+                    budget. Our localized intelligence engine compiles terrain
+                    conditions and community secrets into a bespoke blueprint in
+                    seconds.
                   </p>
                 </div>
 
@@ -73,7 +85,6 @@ export default function Home() {
                     }}
                   >
                     <span>Design Your Journey</span>
-                    
                   </a>
                   <a
                     className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 rounded-2xl font-label-md text-[16px] bg-white/10 backdrop-blur-md border border-white/20 text-white hover:bg-white/20 transition-all duration-300 cursor-pointer"
@@ -172,7 +183,6 @@ export default function Home() {
                     community secrets into a bespoke blueprint.
                   </p>
                 </div>
-
               </div>
 
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-unit-xl items-start">
@@ -266,7 +276,7 @@ export default function Home() {
                         className="font-headline-sm text-headline-sm text-secondary font-bold"
                         id="budget-value"
                       >
-                        ₹{budget.toLocaleString('en-IN')}
+                        ₹{budget.toLocaleString("en-IN")}
                       </span>
                     </div>
                     <div className="bg-surface p-unit-md rounded-xl shadow-sm space-y-unit-sm">
@@ -343,9 +353,10 @@ export default function Home() {
                       className="w-full py-unit-md bg-primary text-on-primary font-label-md text-label-md rounded-xl hover:bg-primary-container shadow-md transition-all flex items-center justify-center gap-2 group"
                       id="generate-btn"
                       type="button"
-                      onClick={() => navigate('/plan', { state: { destination, budget } })}
+                      onClick={() =>
+                        navigate("/plan", { state: { destination, budget } })
+                      }
                     >
-
                       <span>Generate Your Precision Itinerary</span>
                     </button>
                     <p className="text-center font-meta-mono text-meta-mono text-outline">
@@ -754,7 +765,6 @@ export default function Home() {
                         last asphalt point.
                       </p>
                     </div>
-
                   </div>
                 </div>
               </div>
@@ -828,7 +838,6 @@ export default function Home() {
                       and hidden village bakeries using 50-year-old sourdough
                       starters.
                     </p>
-
                   </div>
                 </div>
               </div>
@@ -872,7 +881,6 @@ export default function Home() {
                     <div className="absolute top-4 left-4 bg-primary text-on-primary font-meta-mono text-meta-mono px-unit-xs py-1 rounded">
                       FEATURE DISPATCH
                     </div>
-
                   </div>
                   <div className="p-unit-lg space-y-unit-sm">
                     <div className="flex items-center gap-unit-sm font-meta-mono text-meta-mono text-outline">
