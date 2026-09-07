@@ -40,6 +40,33 @@ export default function Navbar() {
             className="text-on-surface-variant hover:text-primary transition-colors cursor-pointer"
             onClick={(e) => {
               e.preventDefault();
+              navigate("/");
+            }}
+          >
+            Home
+          </a>
+          <a
+            className="text-on-surface-variant hover:text-primary transition-colors cursor-pointer"
+            onClick={(e) => {
+              e.preventDefault();
+              navigate("/about");
+            }}
+          >
+            About
+          </a>
+          <a
+            className="text-on-surface-variant hover:text-primary transition-colors cursor-pointer"
+            onClick={(e) => {
+              e.preventDefault();
+              navigate("/contact");
+            }}
+          >
+            Contact
+          </a>
+          <a
+            className="text-on-surface-variant hover:text-primary transition-colors cursor-pointer"
+            onClick={(e) => {
+              e.preventDefault();
               navigate("/dashboard");
             }}
           >
